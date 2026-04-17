@@ -10,7 +10,6 @@ A modern, responsive React web application that helps investors simulate and cal
 
 ## Screenshots
 
-*(Add your application screenshots below)*
 
 > **Dashboard Overview**
 > ![Dashboard Placeholder](./docs/screenshot-dashboard.png)
