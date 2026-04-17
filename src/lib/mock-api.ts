@@ -1,6 +1,6 @@
-import type { CoinHolding } from "../types";
+import type { Holding, CapitalGains } from "../types";
 
-export const holdings: CoinHolding[] = [
+const HOLDINGS_DATA: Holding[] = [
   {
     "coin": "USDC",
     "coinName": "USDC",
@@ -403,7 +403,7 @@ export const holdings: CoinHolding[] = [
   }
 ]
 
-export const capitalGains = {
+const CAPITAL_GAINS_DATA: CapitalGains = {
   "capitalGains": {
       "stcg": {
           "profits": 70200.88,
@@ -414,4 +414,16 @@ export const capitalGains = {
           "losses": 3050
       },
   }
-}
+};
+
+export const getCapitalGains = (): Promise<CapitalGains> => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(CAPITAL_GAINS_DATA), 600);
+  });
+};
+
+export const getHoldings = (): Promise<Holding[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(HOLDINGS_DATA), 600);
+  });
+};
