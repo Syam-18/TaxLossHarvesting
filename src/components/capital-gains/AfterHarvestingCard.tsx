@@ -20,10 +20,10 @@ export const AfterHarvestingCard = ({ gains, savedAmount }: AfterHarvestingCardP
         {/* Header Row */}
         <div className="grid grid-cols-[1.5fr_1fr_1fr] gap-4 mb-2 md:mb-3">
           <div></div>
-          <div className="text-right text-blue-200 font-medium tracking-wide">
+          <div className="text-right text-blue-200 text-sm font-medium tracking-wide">
             Short-term
           </div>
-          <div className="text-right text-blue-200 font-medium tracking-wide">
+          <div className="text-right text-blue-200 text-sm font-medium tracking-wide">
             Long-term
           </div>
         </div>

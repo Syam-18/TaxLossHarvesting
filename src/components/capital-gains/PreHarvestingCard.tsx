@@ -18,10 +18,10 @@ export const PreHarvestingCard = ({ gains }: PreHarvestingCardProps) => {
         {/* Header Row */}
         <div className="grid grid-cols-[1.5fr_1fr_1fr] gap-4 mb-2 md:mb-3">
           <div></div>
-          <div className="text-right text-white/80 font-medium tracking-wide">
+          <div className="text-right text-white/80 text-sm font-medium tracking-wide">
             Short-term
           </div>
-          <div className="text-right text-white/80 font-medium tracking-wide">
+          <div className="text-right text-white/80 text-sm font-medium tracking-wide">
             Long-term
           </div>
         </div>
@@ -60,15 +60,15 @@ export const PreHarvestingCard = ({ gains }: PreHarvestingCardProps) => {
           <div className="text-right text-white font-semibold md:font-bold tracking-wide">
             {formatUSD(gains.stcg.net)}
           </div>
-          <div className="text-right text-white font-semibold md:font-bold tracking-wide">
+          <div className="text-right text-white font-bold tracking-wide">
             {formatUSD(gains.ltcg.net)}
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="flex items-baseline gap-4 md:gap-8 md:mt-2 mb-4 pt-2">
-        <span className="font-bold text-md md:text-[18px] tracking-tight">
+      <div className="flex items-baseline gap-4 md:gap-8 mt-2 mb-4 pt-2">
+        <span className="font-bold text-[14px] md:text-[18px] tracking-tight">
           Realised Capital Gains:
         </span>
         <span className="text-[20px] md:text-[24px] font-bold tracking-tight">

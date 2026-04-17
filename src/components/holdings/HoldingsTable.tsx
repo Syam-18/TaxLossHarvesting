@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import type { Holding } from '../../types';
 import { HoldingsRow } from './HoldingsRow';
 import { Checkbox } from "@/components/ui/checkbox";
@@ -11,6 +11,9 @@ interface HoldingsTableProps {
   onDeselectAll: () => void;
 }
 
+type SortKey = 'asset' | 'holdings' | 'value' | 'stcg' | 'ltcg';
+type SortOrder = 'asc' | 'desc';
+
 export const HoldingsTable = ({
   holdings,
   selectedCoins,
@@ -19,12 +22,53 @@ export const HoldingsTable = ({
   onDeselectAll
 }: HoldingsTableProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
   
   const allSelected = holdings.length > 0 && selectedCoins.length === holdings.length;
   
   const handleSelectAllMerge = () => {
     if (allSelected) onDeselectAll();
     else onSelectAll();
+  };
+
+  const handleSort = (key: SortKey) => {
+    if (sortKey === key) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortKey(key);
+      setSortOrder('asc');
+    }
+  };
+
+  const sortedHoldings = useMemo(() => {
+    
+    return [...holdings].sort((a, b) => {
+      let result = 0;
+
+      if (sortKey === 'asset') {
+        result = a.coinName.localeCompare(b.coinName);
+      } else if (sortKey === 'holdings') {
+        result = Number(a.totalHolding || 0) - Number(b.totalHolding || 0);
+      } else if (sortKey === 'value') {
+        result = (Number(a.totalHolding || 0) * Number(a.currentPrice || 0)) - (Number(b.totalHolding || 0) * Number(b.currentPrice || 0));
+      } else if (sortKey === 'stcg') {
+        result = Number(a.stcg?.gain || 0) - Number(b.stcg?.gain || 0);
+      } else if (sortKey === 'ltcg') {
+        result = Number(a.ltcg?.gain || 0) - Number(b.ltcg?.gain || 0);
+      }
+
+      return sortOrder === 'asc' ? result : -result;
+    });
+  }, [holdings, sortKey, sortOrder]);
+
+  const renderSortIndicator = (key: SortKey) => {
+    if (sortKey !== key) return null;
+    return (
+      <span className="text-[#9ca3af] text-[12px] leading-none inline-block mb-[1px]">
+        {sortOrder === 'asc' ? '▲' : '▼'}
+      </span>
+    );
   };
 
   return (
@@ -51,25 +95,50 @@ export const HoldingsTable = ({
                     />
                   </div>
                 </th>
-                <th className="p-1 md:p-2 text-white/90 font-semibold text-[14px]">
-                  Asset
+                <th className="p-1 md:p-2 text-[14px] select-none cursor-pointer" onClick={() => handleSort('asset')}>
+                  <div 
+                    className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
+                  >
+                    {renderSortIndicator('asset')}
+                    <span className="text-white/90 font-semibold">Asset</span>
+                  </div>
                 </th>
-                <th className="p-1 md:p-2 text-end text-white/90 font-semibold text-[14px]">
-                  <div className="flex flex-col">
-                    <span>Holdings</span>
+                <th className="p-1 md:p-2 text-end text-[14px] select-none cursor-pointer" onClick={() => handleSort('holdings')}>
+                  <div 
+                    className="flex flex-col items-end hover:opacity-80 transition-opacity"
+                  >
+                    <div className="flex items-center gap-1.5">
+                      {renderSortIndicator('holdings')}
+                      <span className="text-white/90 font-semibold">Holdings</span>
+                    </div>
                     <span className="text-[10px] text-gray-400 font-normal uppercase tracking-wider mt-0.5">
                       Current Market Rate
                     </span>
                   </div>
                 </th>
-                <th className="p-1 md:p-2 text-end text-white/90 font-semibold text-[14px]">
-                  Total Current Value
+                <th className="p-1 md:p-2 text-end text-[14px] select-none cursor-pointer" onClick={() => handleSort('value')}>
+                  <div 
+                    className="flex items-center justify-end gap-1.5 hover:opacity-80 transition-opacity"
+                  >
+                    {renderSortIndicator('value')}
+                    <span className="text-white/90 font-semibold">Total Current Value</span>
+                  </div>
                 </th>
-                <th className="p-1 md:p-2 text-end text-white/90 font-semibold text-[14px]">
-                  Short-term
+                <th className="p-1 md:p-2 text-end text-[14px] select-none cursor-pointer" onClick={() => handleSort('stcg')}>
+                  <div 
+                    className="flex items-center justify-end gap-1.5 hover:opacity-80 transition-opacity"
+                  >
+                    {renderSortIndicator('stcg')}
+                    <span className="text-white/90 font-semibold">Short-term</span>
+                  </div>
                 </th>
-                <th className="p-1 md:p-2 text-end text-white/90 font-semibold text-[14px]">
-                  Long-Term
+                <th className="p-1 md:p-2 text-end text-[14px] select-none cursor-pointer" onClick={() => handleSort('ltcg')}>
+                  <div 
+                    className="flex items-center justify-end gap-1.5 hover:opacity-80 transition-opacity"
+                  >
+                    {renderSortIndicator('ltcg')}
+                    <span className="text-white/90 font-semibold">Long-Term</span>
+                  </div>
                 </th>
                 <th className="p-1 md:p-2 pr-6 text-right text-white/90 font-semibold text-[14px]">
                   Amount to Sell
@@ -77,9 +146,9 @@ export const HoldingsTable = ({
               </tr>
             </thead>
             <tbody>
-              {holdings.map((holding) => (
+              {sortedHoldings.map((holding) => (
                 <HoldingsRow
-                  key={holding.coin}
+                  key={`${holding.coin}-${holding.coinName}`}
                   holding={holding}
                   isSelected={selectedCoins.includes(holding.coin)}
                   onToggle={onToggleSelection}
@@ -93,7 +162,7 @@ export const HoldingsTable = ({
       <div className="p-1 md:p-2 border-t border-white/5 relative z-20">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="text-blue-500 hover:text-blue-400 font-semibold text-[15px] transition-colors  cursor-pointer underline"
+          className="text-blue-500 hover:text-blue-400 font-semibold text-[15px] transition-colors cursor-pointer underline"
         >
           {isExpanded ? "Collapse table" : "View all"}
         </button>

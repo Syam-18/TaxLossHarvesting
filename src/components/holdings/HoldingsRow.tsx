@@ -14,7 +14,7 @@ export const HoldingsRow = ({ holding, isSelected, onToggle }: HoldingsRowProps)
   const isStcgPositive = holding.stcg.gain >= 0;
   const isLtcgPositive = holding.ltcg.gain >= 0;
 
-  const formatQuantity = (val: number, isBalance: boolean = false) => {
+  const formatQuantity = (val: number) => {
     // some mocked decimals are incredibly small like e-17, using simple format fixes visual bugs
     if (val < 0.0001 && val > 0) return '< 0.0001';
     return val.toLocaleString('en-US', { maximumFractionDigits: 5 });

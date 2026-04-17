@@ -21,18 +21,25 @@ export const TitleSection = () => {
         <h1 className="text-lg font-bold tracking-tight text-white">
           Tax Harvesting
         </h1>
-        <TooltipProvider>
+        <TooltipProvider delayDuration={0}>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button className="text-blue-500 underline hover:text-blue-400 hover:underline cursor-pointer text-sm font-medium focus:outline-none transition-colors">
+              <button 
+                className="text-blue-500 underline hover:text-blue-400 hover:underline cursor-pointer text-sm font-medium focus:outline-none transition-colors"
+                onClick={(e) => e.preventDefault()}
+                onTouchStart={() => {}}
+              >
                 How it works?
               </button>
             </TooltipTrigger>
             <TooltipContent
-              side="right"
-              className="bg-[#1c2237] text-gray-200 border border-blue-500/20 px-4 py-3 max-w-70 shadow-lg rounded-xl"
+              side="bottom"
+              align="start"
+              sideOffset={8}
+              collisionPadding={16}
+              className="bg-[#1c2237] text-gray-200 border border-blue-500/20 px-4 py-3 max-w-[280px] sm:max-w-[300px] shadow-lg rounded-xl z-50 text-wrap"
             >
-              <p className="text-sm shadow-black">
+              <p className="text-xs md:text-sm shadow-black">
                 Tax-loss harvesting allows you to sell assets at a loss to
                 offset capital gains and reduce your tax liability.
               </p>
