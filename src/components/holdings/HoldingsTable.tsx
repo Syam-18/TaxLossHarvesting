@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Holding } from '../../types';
 import { HoldingsRow } from './HoldingsRow';
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface HoldingsTableProps {
   holdings: Holding[];
@@ -38,14 +39,13 @@ export const HoldingsTable = ({
             <thead className="bg-[#1a1c23] sticky top-0 z-10">
               <tr>
                 <th className="p-4 pl-6 w-12 border-b border-white/10">
-                  <label className="flex items-center cursor-pointer">
-                    <input 
-                      type="checkbox" 
+                  <div className="flex items-center">
+                    <Checkbox
                       checked={allSelected}
-                      onChange={handleSelectAllMerge}
-                      className="w-4 h-4 rounded border-gray-600 bg-transparent text-blue-500 focus:ring-blue-500 focus:ring-offset-[#1a1c23] cursor-pointer" 
+                      onCheckedChange={handleSelectAllMerge}
+                      className="border-gray-500 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600" 
                     />
-                  </label>
+                  </div>
                 </th>
                 <th className="p-4 border-b border-white/10 text-white/90 font-semibold text-[14px]">Asset</th>
                 <th className="p-4 border-b border-white/10 text-center text-white/90 font-semibold text-[14px]">

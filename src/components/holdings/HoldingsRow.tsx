@@ -1,5 +1,6 @@
 import type { Holding } from '../../types';
 import { formatUSD } from '../../lib/formatters';
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface HoldingsRowProps {
   holding: Holding;
@@ -22,14 +23,13 @@ export const HoldingsRow = ({ holding, isSelected, onToggle }: HoldingsRowProps)
   return (
     <tr className={`border-b border-white/5 transition-colors ${isSelected ? 'bg-[#1e293b]/70' : 'hover:bg-white/[0.02]'}`}>
       <td className="p-4 pl-6 align-middle">
-        <label className="flex items-center cursor-pointer">
-          <input 
-            type="checkbox" 
+        <div className="flex items-center">
+          <Checkbox
             checked={isSelected}
-            onChange={() => onToggle(holding.coin)}
-            className="w-4 h-4 rounded border-gray-600 bg-transparent text-blue-500 focus:ring-blue-500 focus:ring-offset-[#11131A] cursor-pointer" 
+            onCheckedChange={() => onToggle(holding.coin)}
+            className="border-gray-500 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600" 
           />
-        </label>
+        </div>
       </td>
       <td className="p-4 align-middle">
         <div className="flex items-center gap-3">

@@ -3,6 +3,8 @@ import { CapitalGainsSection } from './components/capital-gains/CapitalGainsSect
 import { HoldingsSection } from './components/holdings/HoldingsSection';
 import { LoadingSpinner } from './components/ui/LoadingSpinner';
 import { ErrorState } from './components/ui/ErrorState';
+import { Header } from './components/layout/Header';
+import { TitleSection } from './components/layout/TitleSection';
 
 function App() {
   const {
@@ -35,9 +37,11 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0D14] text-white p-6 sm:p-10 font-sans">
-      <div className="max-w-[1280px] mx-auto pt-4">
-        <h1 className="text-3xl md:text-4xl font-bold mb-10 tracking-tight text-white focus:outline-none">Tax Loss Harvesting</h1>
+    <div className="min-h-screen bg-[#0A0D14] text-white font-sans flex flex-col">
+      <Header />
+      
+      <main className="flex-1 w-full max-w-[1280px] mx-auto p-6 sm:p-10 pt-8">
+        <TitleSection />
         
         <CapitalGainsSection 
           preHarvestingGains={preHarvestingGains}
@@ -52,7 +56,7 @@ function App() {
           onSelectAll={selectAll}
           onDeselectAll={deselectAll}
         />
-      </div>
+      </main>
     </div>
   );
 }
