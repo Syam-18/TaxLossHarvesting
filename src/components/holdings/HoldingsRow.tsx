@@ -22,7 +22,7 @@ export const HoldingsRow = ({ holding, isSelected, onToggle }: HoldingsRowProps)
 
   return (
     <tr className={`border-b border-white/5 transition-colors ${isSelected ? 'bg-[#1e293b]/70' : 'hover:bg-white/[0.02]'}`}>
-      <td className="p-2 pl-6 align-middle">
+      <td className="p-1 md:p-2 pl-4 md:pl-6 align-middle">
         <div className="flex items-end">
           <Checkbox
             checked={isSelected}
@@ -31,16 +31,16 @@ export const HoldingsRow = ({ holding, isSelected, onToggle }: HoldingsRowProps)
           />
         </div>
       </td>
-      <td className="p-2 align-middle">
+      <td className="p-1 md:p-2 align-middle">
         <div className="flex items-end gap-3">
-          <img src={holding.logo} alt={holding.coinName} className="w-8 h-8 rounded-full object-cover" />
+          <img src={holding.logo} alt={holding.coinName} className="w-8 h-8 rounded-full object-cover self-center" />
           <div className="flex flex-col">
-            <span className="font-medium text-white/95 text-[14px]">{holding.coinName}</span>
-            <span className="text-[12px] text-gray-400">{holding.coin}</span>
+            <span className="font-medium text-white/95 text-sm md:text-[14px]">{holding.coinName}</span>
+            <span className="text-xs md:text-[12px] text-gray-400">{holding.coin}</span>
           </div>
         </div>
       </td>
-      <td className="p-2 text-end align-middle">
+      <td className="p-1 md:p-2 text-end align-middle">
         <div className="flex flex-col">
           <span className="font-semibold text-white/95 text-[14px]">
             {formatQuantity(holding.totalHolding)} {holding.coin}
@@ -50,10 +50,10 @@ export const HoldingsRow = ({ holding, isSelected, onToggle }: HoldingsRowProps)
           </span>
         </div>
       </td>
-      <td className="p-2 text-end align-middle">
+      <td className="p-1 md:p-2 text-end align-middle">
         <span className="font-bold text-white/95 text-[14.5px]">{formatUSD(totalValue)}</span>
       </td>
-      <td className="p-2 text-end align-middle">
+      <td className="p-1 md:p-2 text-end align-middle">
         <div className="flex flex-col">
           <span className={`font-semibold text-[14px] ${isStcgPositive ? 'text-[#10b981]' : 'text-[#f43f5e]'}`}>
             {isStcgPositive ? '+' : '-'} {formatUSD(Math.abs(holding.stcg.gain))}
@@ -63,7 +63,7 @@ export const HoldingsRow = ({ holding, isSelected, onToggle }: HoldingsRowProps)
           </span>
         </div>
       </td>
-      <td className="p-2 text-end align-middle">
+      <td className="p-1 md:p-2 text-end align-middle">
         <div className="flex flex-col">
           <span className={`font-semibold text-[14px] ${isLtcgPositive ? 'text-[#10b981]' : 'text-[#f43f5e]'}`}>
             {isLtcgPositive ? '+' : '-'} {formatUSD(Math.abs(holding.ltcg.gain))}
@@ -73,7 +73,7 @@ export const HoldingsRow = ({ holding, isSelected, onToggle }: HoldingsRowProps)
           </span>
         </div>
       </td>
-      <td className="p-2 pr-6 text-right align-middle">
+      <td className="p-1 md:p-2 pr-6 text-right align-middle">
         {isSelected ? (
           <span className="font-semibold text-white/90 text-[14px]">
             {formatQuantity(holding.totalHolding)} {holding.coin}

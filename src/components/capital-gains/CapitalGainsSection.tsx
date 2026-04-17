@@ -14,7 +14,7 @@ export const CapitalGainsSection = ({
   savedAmount,
 }: CapitalGainsSectionProps) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4">
       <PreHarvestingCard gains={preHarvestingGains} />
       <AfterHarvestingCard gains={afterHarvestingGains} savedAmount={savedAmount} />
     </div>
