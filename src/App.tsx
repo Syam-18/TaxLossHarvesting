@@ -37,19 +37,19 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0D14] text-white font-sans flex flex-col">
+    <div className="min-h-screen bg-[hsl(240,21%,5%)] text-white font-sans flex flex-col">
       <Header />
-      
-      <main className="flex-1 w-full max-w-[1280px] mx-auto p-6 sm:p-10 pt-8">
+
+      <main className="flex-1 w-full max-w-345 mx-auto md:p-6 p-4 md:pt-6">
         <TitleSection />
-        
-        <CapitalGainsSection 
+
+        <CapitalGainsSection
           preHarvestingGains={preHarvestingGains}
           afterHarvestingGains={afterHarvestingGains}
           savedAmount={savedAmount}
         />
 
-        <HoldingsSection 
+        <HoldingsSection
           holdings={holdings}
           selectedCoins={selectedCoins}
           onToggleSelection={toggleSelection}
