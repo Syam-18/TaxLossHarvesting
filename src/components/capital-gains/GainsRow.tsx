@@ -1,4 +1,4 @@
-import { formatUSD } from '../../lib/formatters';
+import { FormattedNumber } from '../ui/FormattedNumber';
 
 interface GainsRowProps {
   label: string;
@@ -20,16 +20,20 @@ export const GainsRow = ({ label, profits, losses, net, isBlueTheme }: GainsRowP
       </div>
       <div className="flex justify-between text-sm mb-2">
         <span className={textMutedClass}>Profits</span>
-        <span className="text-emerald-400 font-medium">+{formatUSD(profits)}</span>
+        <span className="text-emerald-400 font-medium">
+          <FormattedNumber value={profits} prefix="+" />
+        </span>
       </div>
       <div className={`flex justify-between text-sm mb-3 pb-3 border-b ${borderClass}`}>
         <span className={textMutedClass}>Losses</span>
-        <span className="text-red-400 font-medium">-{formatUSD(losses)}</span>
+        <span className="text-red-400 font-medium">
+          <FormattedNumber value={losses} prefix="-" />
+        </span>
       </div>
       <div className="flex justify-between font-bold pt-1">
         <span>Net Total</span>
         <span className={net >= 0 ? 'text-emerald-400' : 'text-red-400'}>
-          {net >= 0 ? '+' : ''}{formatUSD(net)}
+          <FormattedNumber value={net} prefix={net >= 0 ? '+' : ''} />
         </span>
       </div>
     </div>

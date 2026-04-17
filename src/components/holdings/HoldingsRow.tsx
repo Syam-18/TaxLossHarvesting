@@ -1,5 +1,6 @@
 import type { Holding } from '../../types';
-import { formatUSD } from '../../lib/formatters';
+
+import { FormattedNumber } from '../ui/FormattedNumber';
 import { Checkbox } from "@/components/ui/checkbox";
 
 interface HoldingsRowProps {
@@ -46,17 +47,17 @@ export const HoldingsRow = ({ holding, isSelected, onToggle }: HoldingsRowProps)
             {formatQuantity(holding.totalHolding)} {holding.coin}
           </span>
           <span className="text-[12px] text-gray-400 mt-0.5">
-            {formatUSD(holding.currentPrice)}/{holding.coin}
+            <FormattedNumber value={holding.currentPrice} />/{holding.coin}
           </span>
         </div>
       </td>
       <td className="p-1 md:p-2 text-end align-middle">
-        <span className="font-bold text-white/95 text-[14.5px]">{formatUSD(totalValue)}</span>
+        <FormattedNumber value={totalValue} className="font-bold text-white/95 text-[14.5px]" />
       </td>
       <td className="p-1 md:p-2 text-end align-middle">
         <div className="flex flex-col">
           <span className={`font-semibold text-[14px] ${isStcgPositive ? 'text-[#10b981]' : 'text-[#f43f5e]'}`}>
-            {isStcgPositive ? '+' : '-'} {formatUSD(Math.abs(holding.stcg.gain))}
+            <FormattedNumber value={Math.abs(holding.stcg.gain)} prefix={isStcgPositive ? '+ ' : '- '} />
           </span>
           <span className="text-[12px] text-gray-400 mt-0.5">
             {formatQuantity(holding.stcg.balance)} {holding.coin}
@@ -66,7 +67,7 @@ export const HoldingsRow = ({ holding, isSelected, onToggle }: HoldingsRowProps)
       <td className="p-1 md:p-2 text-end align-middle">
         <div className="flex flex-col">
           <span className={`font-semibold text-[14px] ${isLtcgPositive ? 'text-[#10b981]' : 'text-[#f43f5e]'}`}>
-            {isLtcgPositive ? '+' : '-'} {formatUSD(Math.abs(holding.ltcg.gain))}
+            <FormattedNumber value={Math.abs(holding.ltcg.gain)} prefix={isLtcgPositive ? '+ ' : '- '} />
           </span>
           <span className="text-[12px] text-gray-400 mt-0.5">
             {formatQuantity(holding.ltcg.balance)} {holding.coin}

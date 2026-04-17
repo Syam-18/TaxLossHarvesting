@@ -1,5 +1,5 @@
 import type { CalculatedGains } from '../../lib/calculations';
-import { formatUSD } from '../../lib/formatters';
+import { FormattedNumber } from '../ui/FormattedNumber';
 
 interface PreHarvestingCardProps {
   gains: CalculatedGains | null;
@@ -32,10 +32,10 @@ export const PreHarvestingCard = ({ gains }: PreHarvestingCardProps) => {
             Profits
           </div>
           <div className="text-right text-white/90 text-xs md:text-lg tracking-wide">
-            {formatUSD(gains.stcg.profits)}
+            <FormattedNumber value={gains.stcg.profits} />
           </div>
           <div className="text-right text-white/90 text-xs md:text-lg tracking-wide">
-            {formatUSD(gains.ltcg.profits)}
+            <FormattedNumber value={gains.ltcg.profits} />
           </div>
         </div>
 
@@ -45,10 +45,10 @@ export const PreHarvestingCard = ({ gains }: PreHarvestingCardProps) => {
             Losses
           </div>
           <div className="text-right text-white/90 text-xs md:text-lg tracking-wide">
-            - {formatUSD(Math.abs(gains.stcg.losses))}
+            <FormattedNumber value={Math.abs(gains.stcg.losses)} prefix="- " />
           </div>
           <div className="text-right text-white/90 text-xs md:text-lg tracking-wide">
-            - {formatUSD(Math.abs(gains.ltcg.losses))}
+            <FormattedNumber value={Math.abs(gains.ltcg.losses)} prefix="- " />
           </div>
         </div>
 
@@ -58,10 +58,10 @@ export const PreHarvestingCard = ({ gains }: PreHarvestingCardProps) => {
             Net Capital Gains
           </div>
           <div className="text-right text-white font-semibold md:font-bold tracking-wide">
-            {formatUSD(gains.stcg.net)}
+            <FormattedNumber value={gains.stcg.net} />
           </div>
           <div className="text-right text-white font-bold tracking-wide">
-            {formatUSD(gains.ltcg.net)}
+            <FormattedNumber value={gains.ltcg.net} />
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@ export const PreHarvestingCard = ({ gains }: PreHarvestingCardProps) => {
           Realised Capital Gains:
         </span>
         <span className="text-[20px] md:text-[24px] font-bold tracking-tight">
-          {formatUSD(gains.realised)}
+          <FormattedNumber value={gains.realised} />
         </span>
       </div>
     </div>

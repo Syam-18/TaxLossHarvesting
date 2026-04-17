@@ -42,11 +42,11 @@ const HOLDINGS_DATA: Holding[] = [
     "averageBuyPrice": 221.42847548590152,
     "stcg": {
       "balance": 3.469446951953614e-17,
-      "gain": 5.043389846205066e-13
+      "gain": -125.50
     },
     "ltcg": {
-      "balance": 0,
-      "gain": 0
+      "balance": 2.5,
+      "gain": -85.20
     }
   },
   {
@@ -74,11 +74,11 @@ const HOLDINGS_DATA: Holding[] = [
     "averageBuyPrice": 0.6880274617804887,
     "stcg": {
       "balance": 2.75145540184285,
-      "gain": 59.244262152615974
+      "gain": -340.50
     },
     "ltcg": {
-      "balance": 0,
-      "gain": 0
+      "balance": 1.5,
+      "gain": -150.00
     }
   },
   {
@@ -218,11 +218,11 @@ const HOLDINGS_DATA: Holding[] = [
     "averageBuyPrice": 3909.792264648455,
     "stcg": {
       "balance": 0.0004211938732637162,
-      "gain": 89.40775336229291
+      "gain": -1200.75
     },
     "ltcg": {
-      "balance": 0,
-      "gain": 0
+      "balance": 0.15,
+      "gain": -450.25
     }
   },
   {
@@ -266,11 +266,11 @@ const HOLDINGS_DATA: Holding[] = [
     "averageBuyPrice": 9.172984515948809,
     "stcg": {
       "balance": 0.000047233224826389,
-      "gain": 0.06806151900976895
+      "gain": -45.30
     },
     "ltcg": {
-      "balance": 0,
-      "gain": 0
+      "balance": 12.5,
+      "gain": -12.50
     }
   },
   {

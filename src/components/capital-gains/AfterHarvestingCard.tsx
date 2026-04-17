@@ -1,5 +1,5 @@
 import type { CalculatedGains } from '../../lib/calculations';
-import { formatUSD } from '../../lib/formatters';
+import { FormattedNumber } from '../ui/FormattedNumber';
 import { SavingsBadge } from './SavingsBadge';
 
 interface AfterHarvestingCardProps {
@@ -34,10 +34,10 @@ export const AfterHarvestingCard = ({ gains, savedAmount }: AfterHarvestingCardP
             Profits
           </div>
           <div className="text-right text-white text-xs md:text-lg tracking-wide">
-            {formatUSD(gains.stcg.profits)}
+            <FormattedNumber value={gains.stcg.profits} />
           </div>
           <div className="text-right text-white text-xs md:text-lg tracking-wide">
-            {formatUSD(gains.ltcg.profits)}
+            <FormattedNumber value={gains.ltcg.profits} />
           </div>
         </div>
 
@@ -47,10 +47,10 @@ export const AfterHarvestingCard = ({ gains, savedAmount }: AfterHarvestingCardP
             Losses
           </div>
           <div className="text-right text-white text-xs md:text-lg tracking-wide">
-            - {formatUSD(Math.abs(gains.stcg.losses))}
+            <FormattedNumber value={Math.abs(gains.stcg.losses)} prefix="- " />
           </div>
           <div className="text-right text-white text-xs md:text-lg tracking-wide">
-            - {formatUSD(Math.abs(gains.ltcg.losses))}
+            <FormattedNumber value={Math.abs(gains.ltcg.losses)} prefix="- " />
           </div>
         </div>
 
@@ -60,24 +60,23 @@ export const AfterHarvestingCard = ({ gains, savedAmount }: AfterHarvestingCardP
             Net Capital Gains
           </div>
           <div className="text-right text-white font-semibold md:font-bold tracking-wide">
-            {formatUSD(gains.stcg.net)}
+            <FormattedNumber value={gains.stcg.net} />
           </div>
           <div className="text-right text-white font-semibold md:font-bold tracking-wide">
-            {formatUSD(gains.ltcg.net)}
+            <FormattedNumber value={gains.ltcg.net} />
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="flex flex-col sm:flex-row items-baseline justify-between gap-4 md:mt-2 mb-4 pt-2">
-        <div className="flex items-baseline gap-4 md:gap-8">
-          <span className="font-bold text-md md:text-[18px] tracking-tight text-blue-100">
-            Realised Capital Gains:
-          </span>
-          <span className="text-[20px] md:text-[24px] font-bold tracking-tight">
-            {formatUSD(gains.realised)}
-          </span>
-        </div>
+      <div className="flex items-center gap-2 mt-4 md:mt-6 mb-3">
+        <span className="font-bold text-[18px] md:text-[20px] text-white/95">
+          Effective Capital Gains:
+        </span>
+        <FormattedNumber 
+          value={gains.realised} 
+          className="text-[20px] md:text-[22px] font-bold text-white tracking-tight"
+        />
       </div>
 
       <SavingsBadge savedAmount={savedAmount} />
