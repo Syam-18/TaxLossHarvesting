@@ -114,22 +114,6 @@ const HOLDINGS_DATA: Holding[] = [
     }
   },
   {
-    "coin": "USDC",
-    "coinName": "Bridged USDC (Polygon PoS Bridge)",
-    "logo": "https://coin-images.coingecko.com/coins/images/33000/large/usdc.png?1700119918",
-    "currentPrice": 85.41,
-    "totalHolding": 0.005806999999992795,
-    "averageBuyPrice": 1.5405071277176852,
-    "stcg": {
-      "balance": 0.005806999999992795,
-      "gain": 0.48703014510873915
-    },
-    "ltcg": {
-      "balance": 0,
-      "gain": 0
-    }
-  },
-  {
     "coin": "SLN",
     "coinName": "Smart Layer Network",
     "logo": "https://koinx-statics.s3.ap-south-1.amazonaws.com/currencies/DefaultCoin.svg",
