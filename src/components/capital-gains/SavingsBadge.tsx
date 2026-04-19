@@ -5,7 +5,11 @@ interface SavingsBadgeProps {
 }
 
 export const SavingsBadge = ({ savedAmount }: SavingsBadgeProps) => {
-  if (savedAmount <= 0) return null;
+  if (savedAmount <= 0) return (
+    <div className='h-6 md:h-7'>
+
+    </div>
+  );
 
   return (
     <div className="flex items-center justify-start gap-1 pb-1">

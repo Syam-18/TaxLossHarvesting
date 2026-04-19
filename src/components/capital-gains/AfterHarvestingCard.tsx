@@ -70,7 +70,7 @@ export const AfterHarvestingCard = ({ gains, savedAmount }: AfterHarvestingCardP
 
       {/* Footer */}
       <div className="flex items-center gap-2 mt-4 md:mt-6 mb-3">
-        <span className="font-bold text-[18px] md:text-[20px] text-white/95">
+        <span className="font-bold text-[14px] md:text-[18px] text-white/95">
           Effective Capital Gains:
         </span>
         <FormattedNumber 
